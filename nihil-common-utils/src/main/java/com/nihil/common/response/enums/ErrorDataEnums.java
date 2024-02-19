@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 
-public enum DataEnums {
+public enum ErrorDataEnums {
     /**
      * 成功
      */
@@ -88,6 +88,11 @@ public enum DataEnums {
     UPDATE_RECYCLE_FILED("回收数据赋值审核状态失败", 406),
 
     /**
+     * 数据查询为空
+     */
+    DATA_NOT_FIND("查询为空", 404),
+
+    /**
      * 入参数据为空.
      */
     PLUGIN_CANNOT_ACCESS("没有该插件的操作权限",1101);
@@ -101,7 +106,7 @@ public enum DataEnums {
      */
     private final int code;
 
-    DataEnums(String msg, int code) {
+    ErrorDataEnums(String msg, int code) {
         this.msg = msg;
         this.code = code;
     }
@@ -122,7 +127,7 @@ public enum DataEnums {
     private static final Map<String, Integer> DATE_ENUMS = new HashMap<>();
 
     static {
-        Stream.of(DataEnums.values()).forEach(v -> DATE_ENUMS.put(v.msg, v.code));
+        Stream.of(ErrorDataEnums.values()).forEach(v -> DATE_ENUMS.put(v.msg, v.code));
     }
 
 }

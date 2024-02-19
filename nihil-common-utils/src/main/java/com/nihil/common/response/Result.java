@@ -1,7 +1,7 @@
 package com.nihil.common.response;
 
 import lombok.Data;
-import com.nihil.common.response.enums.DataEnums;
+import com.nihil.common.response.enums.ErrorDataEnums;
 
 
 @Data
@@ -19,7 +19,7 @@ public class Result<T> {
         this.msg = msg;
     }
 
-    public Result(DataEnums enums) {
+    public Result(ErrorDataEnums enums) {
         this.code = enums.getCode();
         this.msg = enums.getMsg();
     }
@@ -29,13 +29,13 @@ public class Result<T> {
         this.msg = msg;
     }
 
-    public Result(T data, DataEnums enums) {
+    public Result(T data, ErrorDataEnums enums) {
         this.data = data;
         this.code = enums.getCode();
         this.msg = enums.getMsg();
     }
 
-    public Result(String msg, DataEnums enums) {
+    public Result(String msg, ErrorDataEnums enums) {
         this.msg = msg;
         this.code = enums.getCode();
     }
@@ -47,15 +47,15 @@ public class Result<T> {
     }
 
     public static <T> Result<T> success(T date) {
-        return new Result<>(date, DataEnums.SUCCESS);
+        return new Result<>(date, ErrorDataEnums.SUCCESS);
     }
 
     public static <T> Result<T> success() {
-        return new Result<>(DataEnums.SUCCESS.getMsg(), DataEnums.SUCCESS);
+        return new Result<>(ErrorDataEnums.SUCCESS.getMsg(), ErrorDataEnums.SUCCESS);
     }
 
     public static <T> Result<T> failed() {
-        return new Result<>(DataEnums.FAILED.getMsg(), DataEnums.FAILED);
+        return new Result<>(ErrorDataEnums.FAILED.getMsg(), ErrorDataEnums.FAILED);
     }
 
     public static <T> Result<T> failed(int code) {
@@ -63,7 +63,7 @@ public class Result<T> {
     }
 
     public static <T> Result<T> failed(String msg) {
-        return new Result<>(msg, DataEnums.FAILED);
+        return new Result<>(msg, ErrorDataEnums.FAILED);
     }
 
     public static <T> Result<T> failed(String msg, int code) {
@@ -74,11 +74,11 @@ public class Result<T> {
         return new Result<>(msg, code, data);
     }
 
-    public static <T> Result<T> failed(DataEnums enums) {
+    public static <T> Result<T> failed(ErrorDataEnums enums) {
         return new Result<>(enums);
     }
 
-    public static <T> Result<T> failed(DataEnums enums, T data) {
+    public static <T> Result<T> failed(ErrorDataEnums enums, T data) {
         return new Result<>(data, enums);
     }
 }
